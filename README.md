@@ -1,1 +1,2 @@
 # FreeCodeCamp-JavaScript-Certification
+This repository contains all the projects and exercises I completed as part of the FreeCodeCamp JavaScript Certification. It covers JavaScript fundamentals including variables, data types, operators, conditionals, functions, arrays, objects, loops, and ES6 features like arrow functions, template literals, and destructuring. It also includes practice with DOM manipulation, event handling, and problem-solving exercises. Each project is organized clearly to showcase my learning progress and demonstrate my proficiency in JavaScript.
