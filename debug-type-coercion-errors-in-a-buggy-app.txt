@@ -1,0 +1,29 @@
+** start of script.js **
+
+// 1. Add 5 + 10
+const firstResult = 5 + 10;
+console.log(`5 + 10 = ${firstResult}`);
+
+// 2. Subtract 5 from 8
+const secondResult = 8 - 5;
+console.log(`8 - 5 = ${secondResult}`);
+
+// 3. Add two numbers to get 6
+const thirdResult = 1 + 5;
+console.log(`1 + 5 = ${thirdResult}`);
+
+// 4. Add two numbers to get 8
+const fourthResult = 3 + 5;
+console.log(`3 + 5 = ${fourthResult}`);
+
+// 5. Multiply two numbers to get 20
+const fifthResult = 10 * 2;
+console.log(`10 * 2 = ${fifthResult}`);
+
+// 6. Add two numbers to get 22
+const sixthResult = 12 + 10;
+console.log(`12 + 10 = ${sixthResult}`);
+
+
+** end of script.js **
+
