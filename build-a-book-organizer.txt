@@ -1,0 +1,26 @@
+** start of script.js **
+
+// 1. Array of book objects
+const books = [
+  { title: "1984", authorName: "George Orwell", releaseYear: 1949 },
+  { title: "Brave New World", authorName: "Aldous Huxley", releaseYear: 1932 },
+  { title: "Fahrenheit 451", authorName: "Ray Bradbury", releaseYear: 1953 },
+  { title: "Animal Farm", authorName: "George Orwell", releaseYear: 1945 },
+];
+
+// 2. Callback function to sort by releaseYear
+function sortByYear(book1, book2) {
+  if (book1.releaseYear < book2.releaseYear) return -1;
+  if (book1.releaseYear > book2.releaseYear) return 1;
+  return 0;
+}
+
+// 3. Filter books released on or before 1950
+const filteredBooks = books.filter(book => book.releaseYear <= 1950);
+
+// 4. Sort the filteredBooks array using sortByYear
+filteredBooks.sort(sortByYear);
+
+
+** end of script.js **
+

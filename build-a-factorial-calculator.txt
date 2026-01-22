@@ -1,0 +1,26 @@
+** start of script.js **
+
+// Step 1: Declare a number between 1 and 20
+const num = 7; // You can choose any number from 1 to 20
+
+// Step 2: Create the factorialCalculator function
+function factorialCalculator(n) {
+  let result = 1; // Initialize result to 1
+  for (let i = 1; i <= n; i++) {
+    result *= i; // Multiply result by current number
+  }
+  return result; // Return the final factorial
+}
+
+// Step 3: Call the function with num
+const factorial = factorialCalculator(num);
+
+// Step 4: Format the result message
+const resultMsg = `Factorial of ${num} is ${factorial}`;
+
+// Step 5: Output the result to the console
+console.log(resultMsg);
+
+
+** end of script.js **
+

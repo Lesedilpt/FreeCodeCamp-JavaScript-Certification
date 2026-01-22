@@ -1,0 +1,85 @@
+** start of index.html **
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Real Time Counter</title>
+  <style>
+    /* Basic styling */
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    textarea {
+      width: 100%;
+      height: 100px;
+      font-size: 16px;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+
+    #char-count {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    /* Red text when max length is reached */
+    #char-count.max {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Real Time Character Counter</h2>
+
+  <textarea id="text-input" placeholder="Type something..."></textarea>
+  <p id="char-count">Character Count: 0/50</p>
+
+  <script>
+    const textarea = document.getElementById('text-input');
+    const charCount = document.getElementById('char-count');
+    const maxLength = 50;
+
+    textarea.addEventListener('input', () => {
+      let text = textarea.value;
+
+      // Trim text if it exceeds maxLength
+      if (text.length > maxLength) {
+        text = text.slice(0, maxLength);
+        textarea.value = text; // Update the textarea value
+      }
+
+      // Update character count
+      charCount.textContent = `Character Count: ${text.length}/50`;
+
+      // Add or remove red color if max length reached
+      if (text.length >= maxLength) {
+        charCount.classList.add('max');
+      } else {
+        charCount.classList.remove('max');
+      }
+    });
+  </script>
+
+</body>
+</html>
+
+
+** end of index.html **
+
+** start of styles.css **
+
+
+
+** end of styles.css **
+
+** start of script.js **
+
+    
+
+** end of script.js **
+

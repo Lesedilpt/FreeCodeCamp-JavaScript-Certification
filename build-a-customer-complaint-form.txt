@@ -1,0 +1,263 @@
+** start of index.html **
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Customer Complaint Form</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <h1>Complaint Form</h1>
+    <form id="form">
+        <fieldset id="personal-info">
+            <div>
+                <label for="full-name">Full Name:</label>
+                <input type="text" id="full-name" name="full-name" placeholder="John Doe">
+            </div>
+
+            <div>
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" name="email" placeholder="example@domain.com">
+            </div>
+        </fieldset>
+        <hr>
+        <fieldset id="product-info">
+            <div>
+                <label for="order-no">Order No:</label>
+                <input type="text" id="order-no" name="order-no" placeholder="2024######">
+            </div>
+            <div>
+                <label for="product-code">Product Code:</label>
+                <input type="text" id="product-code" name="product-code" placeholder="XX##-X###-XX#">
+            </div>
+            <div>
+                <label for="quantity">Quantity:</label>
+                <input type="number" id="quantity" name="quantity" min="1">
+            </div>
+        </fieldset>
+
+        <fieldset id="complaints-group">
+            <legend>Complaint Reason:</legend>
+            <div>
+                <input type="checkbox" id="damaged-product" name="complaint" value="damaged-product">
+                <label for="damaged-product">Damaged Product</label>
+            </div>
+
+            <div>
+                <input type="checkbox" id="nonconforming-product" name="complaint" value="nonconforming-product">
+                <label for="nonconforming-product">Nonconforming Product</label>
+            </div>
+
+            <div>
+                <input type="checkbox" id="delayed-dispatch" name="complaint" value="delayed-dispatch">
+                <label for="delayed-dispatch">Delayed Dispatch</label>
+            </div>
+
+            <div>
+                <input type="checkbox" id="other-complaint" name="complaint" value="other">
+                <label for="other-complaint">Other</label>
+            </div>
+        </fieldset>
+
+        <fieldset id="complaint-description-container">
+            <legend>Description of Complaint Reason</legend>
+            <textarea placeholder="Describe the reason of your complaint in at least 20 characters"
+                name="complaint-textarea" id="complaint-description"></textarea>
+        </fieldset>
+
+        <fieldset id="solutions-group">
+            <legend>Desired Solution</legend>
+            <input type="radio" name="solutions" id="refund" value="refund">
+            <label for="refund">Refund</label>
+
+            <input type="radio" name="solutions" id="exchange" value="exchange">
+            <label for="exchange">Exchange</label>
+
+            <input type="radio" name="solutions" id="other-solution" value="other">
+            <label for="other-solution">Other</label>
+        </fieldset>
+
+        <fieldset id="solution-description-container">
+            <legend>Description of Desired Solution</legend>
+            <textarea placeholder="Describe the desired solution to your issue in at least 20 characters"
+                name="solution-textarea" id="solution-description"></textarea>
+        </fieldset>
+        <div id="btn-container">
+            <button type="submit" id="submit-btn">Submit</button>
+            <span id="message-box" aria-live="polite"></span>
+        </div>
+
+    </form>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
+
+** end of index.html **
+
+** start of styles.css **
+
+* {
+    box-sizing: border-box;
+}
+
+h1 {
+    text-align: center;
+}
+
+#form {
+    max-width: 70%;
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 10px;
+}
+
+input {
+    border-color: rgb(118, 118, 118);
+}
+
+#personal-info input, #product-info input {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+
+fieldset {
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border-color: rgb(118, 118, 118);
+}
+
+textarea {
+    width: 100%;
+    border-color: rgb(118, 118, 118);
+}
+
+#btn-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#submit-btn, #clear-btn {
+    margin: 10px 15px 0;
+}
+
+** end of styles.css **
+
+** start of script.js **
+
+// Select DOM elements
+const form = document.getElementById('form');
+const fullNameInput = document.getElementById('full-name');
+const emailInput = document.getElementById('email');
+const orderNoInput = document.getElementById('order-no');
+const productCodeInput = document.getElementById('product-code');
+const quantityInput = document.getElementById('quantity');
+const complaintsGroup = document.getElementById('complaints-group');
+const complaintDescription = document.getElementById('complaint-description');
+const otherComplaintCheckbox = document.getElementById('other-complaint');
+const solutionsGroup = document.getElementById('solutions-group');
+const solutionDescription = document.getElementById('solution-description');
+const otherSolutionRadio = document.getElementById('other-solution');
+const messageBox = document.getElementById('message-box');
+
+// Validation functions
+function validateForm() {
+    const validations = {
+        "full-name": fullNameInput.value.trim() !== "",
+        "email": /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value),
+        "order-no": /^2024\d{6}$/.test(orderNoInput.value),
+        "product-code": /^[a-zA-Z]{2}\d{2}-[a-zA-Z]\d{3}-[a-zA-Z]{2}\d$/.test(productCodeInput.value),
+        "quantity": Number(quantityInput.value) > 0,
+        "complaints-group": Array.from(complaintsGroup.querySelectorAll('input[type="checkbox"]')).some(cb => cb.checked),
+        "complaint-description": !otherComplaintCheckbox.checked || complaintDescription.value.trim().length >= 20,
+        "solutions-group": Array.from(solutionsGroup.querySelectorAll('input[type="radio"]')).some(rb => rb.checked),
+        "solution-description": !otherSolutionRadio.checked || solutionDescription.value.trim().length >= 20
+    };
+    return validations;
+}
+
+function isValid(validations) {
+    return Object.values(validations).every(val => val);
+}
+
+// Event handlers to set border color dynamically
+function setBorderColor(element, isValid) {
+    element.style.borderColor = isValid ? "green" : "red";
+}
+
+function setGroupBorderColor(group, isValid) {
+    group.style.borderColor = isValid ? "green" : "red";
+}
+
+// Add change events for each input
+fullNameInput.addEventListener('change', () => setBorderColor(fullNameInput, fullNameInput.value.trim() !== ""));
+emailInput.addEventListener('change', () => setBorderColor(emailInput, /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value)));
+orderNoInput.addEventListener('change', () => setBorderColor(orderNoInput, /^2024\d{6}$/.test(orderNoInput.value)));
+productCodeInput.addEventListener('change', () => setBorderColor(productCodeInput, /^[a-zA-Z]{2}\d{2}-[a-zA-Z]\d{3}-[a-zA-Z]{2}\d$/.test(productCodeInput.value)));
+quantityInput.addEventListener('change', () => setBorderColor(quantityInput, Number(quantityInput.value) > 0));
+
+complaintsGroup.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+    cb.addEventListener('change', () => {
+        setGroupBorderColor(complaintsGroup, Array.from(complaintsGroup.querySelectorAll('input[type="checkbox"]')).some(cb => cb.checked));
+    });
+});
+
+complaintDescription.addEventListener('change', () => {
+    if (otherComplaintCheckbox.checked) {
+        setBorderColor(complaintDescription, complaintDescription.value.trim().length >= 20);
+    } else {
+        complaintDescription.style.borderColor = "";
+    }
+});
+
+solutionsGroup.querySelectorAll('input[type="radio"]').forEach(rb => {
+    rb.addEventListener('change', () => {
+        setGroupBorderColor(solutionsGroup, Array.from(solutionsGroup.querySelectorAll('input[type="radio"]')).some(rb => rb.checked));
+    });
+});
+
+solutionDescription.addEventListener('change', () => {
+    if (otherSolutionRadio.checked) {
+        setBorderColor(solutionDescription, solutionDescription.value.trim().length >= 20);
+    } else {
+        solutionDescription.style.borderColor = "";
+    }
+});
+
+// Form submission
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const validations = validateForm();
+
+    // Highlight invalid fields
+    setBorderColor(fullNameInput, validations["full-name"]);
+    setBorderColor(emailInput, validations["email"]);
+    setBorderColor(orderNoInput, validations["order-no"]);
+    setBorderColor(productCodeInput, validations["product-code"]);
+    setBorderColor(quantityInput, validations["quantity"]);
+    setGroupBorderColor(complaintsGroup, validations["complaints-group"]);
+    setBorderColor(complaintDescription, validations["complaint-description"]);
+    setGroupBorderColor(solutionsGroup, validations["solutions-group"]);
+    setBorderColor(solutionDescription, validations["solution-description"]);
+
+    // Show message if all valid
+    if (isValid(validations)) {
+        messageBox.innerText = "Form submitted successfully!";
+        messageBox.style.color = "green";
+    } else {
+        messageBox.innerText = "Please fix the errors highlighted in red.";
+        messageBox.style.color = "red";
+    }
+});
+
+
+** end of script.js **
+

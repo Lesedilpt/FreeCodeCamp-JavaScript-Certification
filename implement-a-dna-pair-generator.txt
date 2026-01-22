@@ -1,0 +1,17 @@
+** start of script.js **
+
+function pairElement(str) {
+  const pairs = {
+    A: "T",
+    T: "A",
+    C: "G",
+    G: "C"
+  };
+  
+  // Map each character in the input string to its pair
+  return str.split("").map(char => [char, pairs[char]]);
+}
+
+
+** end of script.js **
+

@@ -1,0 +1,23 @@
+** start of script.js **
+
+function steamrollArray(arr) {
+  let result = [];
+
+  function flatten(item) {
+    if (Array.isArray(item)) {
+      // If the item is an array, recurse on each element
+      item.forEach(flatten);
+    } else {
+      // If not an array, push to result
+      result.push(item);
+    }
+  }
+
+  // Start recursion with the original array
+  flatten(arr);
+  return result;
+}
+
+
+** end of script.js **
+

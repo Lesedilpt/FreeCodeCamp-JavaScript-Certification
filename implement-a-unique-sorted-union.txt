@@ -1,0 +1,21 @@
+** start of script.js **
+
+function uniteUnique(...arrays) {
+  const result = [];
+
+  // Loop through each array in the arguments
+  arrays.forEach(arr => {
+    arr.forEach(value => {
+      // Add value only if it’s not already in result
+      if (!result.includes(value)) {
+        result.push(value);
+      }
+    });
+  });
+
+  return result;
+}
+
+
+** end of script.js **
+

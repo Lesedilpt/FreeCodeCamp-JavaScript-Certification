@@ -1,0 +1,14 @@
+** start of script.js **
+
+function mutation(arr) {
+  // Convert both strings to lowercase for case-insensitive comparison
+  const first = arr[0].toLowerCase();
+  const second = arr[1].toLowerCase();
+
+  // Check if every character in the second string is in the first string
+  return second.split("").every(char => first.includes(char));
+}
+
+
+** end of script.js **
+

@@ -1,0 +1,53 @@
+** start of script.js **
+
+// 1. Declare an empty inventory array
+const inventory = [];
+
+// 2. Find the index of a product in inventory by name (case-insensitive)
+function findProductIndex(productName) {
+  const lowerName = productName.toLowerCase();
+  return inventory.findIndex(item => item.name === lowerName);
+}
+
+// 3. Add a product to inventory or update its quantity
+function addProduct(product) {
+  const lowerName = product.name.toLowerCase();
+  const index = findProductIndex(lowerName);
+
+  if (index !== -1) {
+    // Product exists, update quantity
+    inventory[index].quantity += product.quantity;
+    console.log(`${lowerName} quantity updated`);
+  } else {
+    // Product doesn't exist, add to inventory
+    inventory.push({ name: lowerName, quantity: product.quantity });
+    console.log(`${lowerName} added to inventory`);
+  }
+}
+
+// 4. Remove quantity from a product or remove the product entirely
+function removeProduct(productName, quantity) {
+  const lowerName = productName.toLowerCase();
+  const index = findProductIndex(lowerName);
+
+  if (index === -1) {
+    console.log(`${lowerName} not found`);
+    return;
+  }
+
+  const product = inventory[index];
+
+  if (product.quantity < quantity) {
+    console.log(`Not enough ${lowerName} available, remaining pieces: ${product.quantity}`);
+  } else if (product.quantity === quantity) {
+    inventory.splice(index, 1); // Remove product completely
+    console.log(`Remaining ${lowerName} pieces: 0`);
+  } else {
+    product.quantity -= quantity;
+    console.log(`Remaining ${lowerName} pieces: ${product.quantity}`);
+  }
+}
+
+
+** end of script.js **
+

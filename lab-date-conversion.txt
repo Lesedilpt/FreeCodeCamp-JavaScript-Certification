@@ -1,0 +1,37 @@
+** start of script.js **
+
+// 1. Create a variable for the current date and time
+let currentDate = new Date();
+
+// 2. Create a string showing the current date and time
+let currentDateFormat = `Current Date and Time: ${currentDate}`;
+
+// 3. Log the current date and time
+console.log(currentDateFormat);
+
+// 4. Function to format date as MM/DD/YYYY
+function formatDateMMDDYYYY(date) {
+  // Get month, date, and year
+  let month = date.getMonth() + 1; // Months are 0-based
+  let day = date.getDate();
+  let year = date.getFullYear();
+  
+  return `Formatted Date (MM/DD/YYYY): ${month}/${day}/${year}`;
+}
+
+// 5. Function to format date as Month Day, Year
+function formatDateLong(date) {
+  // Use toLocaleDateString with en-US locale for long format
+  let options = { year: "numeric", month: "long", day: "numeric" };
+  let formattedDate = date.toLocaleDateString("en-US", options);
+  
+  return `Formatted Date (Month Day, Year): ${formattedDate}`;
+}
+
+// Example usage:
+console.log(formatDateMMDDYYYY(currentDate));
+console.log(formatDateLong(currentDate));
+
+
+** end of script.js **
+

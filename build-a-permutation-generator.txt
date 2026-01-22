@@ -1,0 +1,23 @@
+** start of script.js **
+
+function permuteString(str, prefix = "", results = []) {
+  // Base case: when str is empty, push the prefix to results
+  if (str.length === 0) {
+    results.push(prefix);
+    return results;
+  }
+
+  // Iterate over each character in str
+  for (let i = 0; i < str.length; i++) {
+    // Remove the current character from str and recurse
+    const rem = str.slice(0, i) + str.slice(i + 1);
+    permuteString(rem, prefix + str[i], results);
+  }
+
+  // Remove duplicates and return
+  return [...new Set(results)];
+}
+
+
+** end of script.js **
+

@@ -1,0 +1,107 @@
+** start of index.html **
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Palindrome Checker</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Palindrome Checker</h1>
+  
+  <div class="checker">
+    <input type="text" id="text-input" placeholder="Enter text here">
+    <button id="check-btn">Check</button>
+    <p id="result"></p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+
+** end of index.html **
+
+** start of styles.css **
+
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+  background-color: #f4f4f4;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+.checker {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#text-input {
+  padding: 8px;
+  font-size: 16px;
+  width: 300px;
+}
+
+#check-btn {
+  padding: 8px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#result {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+
+** end of styles.css **
+
+** start of script.js **
+
+// Grab elements
+const input = document.querySelector("#text-input");
+const button = document.querySelector("#check-btn");
+const result = document.querySelector("#result");
+
+// Function to check palindrome
+function isPalindrome(str) {
+  // Remove all non-alphanumeric characters and convert to lowercase
+  const cleaned = str.replace(/[^0-9a-z]/gi, '').toLowerCase();
+  // Reverse the cleaned string
+  const reversed = cleaned.split('').reverse().join('');
+  // Compare original cleaned string with reversed
+  return cleaned === reversed;
+}
+
+// Event listener for the button
+button.addEventListener("click", () => {
+  const text = input.value.trim();
+
+  // Alert if input is empty
+  if (!text) {
+    alert("Please input a value");
+    return;
+  }
+
+  // Check if palindrome
+  if (isPalindrome(text)) {
+    result.textContent = `${text} is a palindrome`;
+    result.style.color = "green";
+  } else {
+    result.textContent = `${text} is not a palindrome`;
+    result.style.color = "red";
+  }
+});
+
+
+** end of script.js **
+

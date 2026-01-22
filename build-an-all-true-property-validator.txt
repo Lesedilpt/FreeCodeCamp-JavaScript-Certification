@@ -1,0 +1,33 @@
+** start of script.js **
+
+function truthCheck(collection, pre) {
+  // Check if every object in the collection has a truthy value for the property pre
+  return collection.every(obj => Boolean(obj[pre]));
+}
+
+// Example usage:
+console.log(
+  truthCheck(
+    [
+      {name: "Quincy", role: "Founder", isBot: false},
+      {name: "Naomi", role: "", isBot: false},
+      {name: "Camperbot", role: "Bot", isBot: true}
+    ],
+    "isBot"
+  )
+); // false
+
+console.log(
+  truthCheck(
+    [
+      {name: "Quincy", role: "Founder", isBot: false},
+      {name: "Naomi", role: "", isBot: false},
+      {name: "Camperbot", role: "Bot", isBot: true}
+    ],
+    "name"
+  )
+); // true
+
+
+** end of script.js **
+

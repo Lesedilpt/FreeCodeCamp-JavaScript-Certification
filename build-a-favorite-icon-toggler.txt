@@ -1,0 +1,90 @@
+** start of index.html **
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Favorite Icon Toggler</title>
+  <style>
+    /* Style for the heart when filled */
+    .filled {
+      color: red;
+      font-weight: bold;
+    }
+
+    /* Optional basic styling for the list */
+    .item-list {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .item-list li {
+      margin: 10px 0;
+      font-size: 18px;
+    }
+
+    .favorite-icon {
+      margin-left: 10px;
+      cursor: pointer;
+      font-size: 20px;
+      background: none;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+
+  <ul class="item-list">
+    <li>
+      Item 1
+      <button class="favorite-icon">&#9825;</button>
+    </li>
+    <li>
+      Item 2
+      <button class="favorite-icon">&#9825;</button>
+    </li>
+    <li>
+      Item 3
+      <button class="favorite-icon">&#9825;</button>
+    </li>
+  </ul>
+
+  <script>
+    // Select all heart buttons
+    const heartButtons = document.querySelectorAll('.favorite-icon');
+
+    heartButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Toggle the 'filled' class
+        button.classList.toggle('filled');
+
+        // Update the heart symbol based on the class
+        if (button.classList.contains('filled')) {
+          button.innerHTML = '&#10084;'; // filled heart
+        } else {
+          button.innerHTML = '&#9825;'; // empty heart
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
+
+
+
+** end of index.html **
+
+** start of styles.css **
+
+
+
+** end of styles.css **
+
+** start of script.js **
+
+
+
+** end of script.js **
+

@@ -1,0 +1,15 @@
+** start of script.js **
+
+function countdown(n) {
+  // Base case: if n is less than 1, return an empty array
+  if (n < 1) {
+    return [];
+  }
+
+  // Recursive case: include n at the start and append the countdown of (n-1)
+  return [n, ...countdown(n - 1)];
+}
+
+
+** end of script.js **
+

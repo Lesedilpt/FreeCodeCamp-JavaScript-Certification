@@ -1,0 +1,17 @@
+** start of script.js **
+
+function fearNotLetter(str) {
+  for (let i = 0; i < str.length - 1; i++) {
+    // Compare the char codes of consecutive letters
+    if (str.charCodeAt(i + 1) !== str.charCodeAt(i) + 1) {
+      // If there's a gap, return the missing letter
+      return String.fromCharCode(str.charCodeAt(i) + 1);
+    }
+  }
+  // If no letters are missing
+  return undefined;
+}
+
+
+** end of script.js **
+

@@ -1,0 +1,34 @@
+** start of script.js **
+
+// Step 1: Define the function
+function maskEmail(email) {
+  // Find the index of the "@" symbol
+  const atIndex = email.indexOf("@");
+  
+  // Get the username (everything before @)
+  const username = email.slice(0, atIndex);
+  
+  // Get the domain (everything after @)
+  const domain = email.slice(atIndex);
+  
+  // Mask the username: first character + asterisks + last character
+  const maskedUsername = username[0] + "*".repeat(username.length - 2) + username[username.length - 1];
+  
+  // Return the masked email
+  return maskedUsername + domain;
+}
+
+// Step 2: Declare the email variable
+const email = "apple.pie@example.com";
+
+// Step 3: Call the function and log the result
+console.log(maskEmail(email)); // "a*******e@example.com"
+
+// Test other examples
+console.log(maskEmail("freecodecamp@example.com")); // "f**********p@example.com"
+console.log(maskEmail("info@test.dev"));            // "i**o@test.dev"
+console.log(maskEmail("user@domain.org"));         // "u**r@domain.org"
+
+
+** end of script.js **
+

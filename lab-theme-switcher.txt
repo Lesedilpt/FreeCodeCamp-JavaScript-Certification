@@ -1,0 +1,119 @@
+** start of index.html **
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Theme Switcher</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <button 
+    id="theme-switcher-button" 
+    aria-haspopup="true" 
+    aria-expanded="false" 
+    aria-controls="theme-dropdown">
+    Switch Theme
+  </button>
+
+  <ul id="theme-dropdown" role="menu" aria-labelledby="theme-switcher-button" hidden>
+    <li role="menuitem" id="theme-light">Light</li>
+    <li role="menuitem" id="theme-dark">Dark</li>
+    <li role="menuitem" id="theme-blue">Blue</li>
+  </ul>
+
+  <div id="theme-message" aria-live="polite"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+
+** end of index.html **
+
+** start of styles.css **
+
+body.theme-light {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+body.theme-dark {
+  background-color: #121212;
+  color: #f0f0f0;
+}
+
+body.theme-blue {
+  background-color: #0d6efd;
+  color: #ffffff;
+}
+
+#theme-dropdown {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+}
+
+#theme-dropdown li {
+  cursor: pointer;
+  padding: 5px 10px;
+}
+
+#theme-dropdown li:hover {
+  background-color: #ddd;
+}
+
+
+** end of styles.css **
+
+** start of script.js **
+
+// 1️⃣ Define the themes array
+const themes = [
+  { name: "light", message: "Light theme activated!" },
+  { name: "dark", message: "Dark theme activated!" },
+  { name: "blue", message: "Blue theme activated!" }
+];
+
+// 2️⃣ Select DOM elements
+const button = document.getElementById("theme-switcher-button");
+const dropdown = document.getElementById("theme-dropdown");
+const themeMessage = document.getElementById("theme-message");
+
+// 3️⃣ Toggle dropdown visibility
+button.addEventListener("click", () => {
+  const isHidden = dropdown.hasAttribute("hidden");
+  if (isHidden) {
+    dropdown.removeAttribute("hidden");
+    button.setAttribute("aria-expanded", "true");
+  } else {
+    dropdown.setAttribute("hidden", "");
+    button.setAttribute("aria-expanded", "false");
+  }
+});
+
+// 4️⃣ Handle theme selection
+dropdown.addEventListener("click", (e) => {
+  if (e.target && e.target.matches("li[role='menuitem']")) {
+    const selectedTheme = e.target.id.replace("theme-", ""); // "light", "dark", "blue"
+
+    // Remove any previous theme classes
+    document.body.classList.remove(...themes.map(t => "theme-" + t.name));
+
+    // Add the selected theme class
+    document.body.classList.add("theme-" + selectedTheme);
+
+    // Update the aria-live message
+    const themeObj = themes.find(t => t.name === selectedTheme);
+    if (themeObj) themeMessage.textContent = themeObj.message;
+
+    // Close the dropdown
+    dropdown.setAttribute("hidden", "");
+    button.setAttribute("aria-expanded", "false");
+  }
+});
+
+
+** end of script.js **
+

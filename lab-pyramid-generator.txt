@@ -1,0 +1,26 @@
+** start of script.js **
+
+function pyramid(pattern, rows, upsideDown) {
+  let result = "\n"; // Start with a newline
+
+  for (let i = 0; i < rows; i++) {
+    // Determine the number of pattern characters for this row
+    let numChars = upsideDown 
+      ? (rows - i) * 2 - 1   // For upside-down pyramid
+      : i * 2 + 1;           // For normal pyramid
+
+    // Determine the number of leading spaces
+    let numSpaces = upsideDown 
+      ? i                      // Spaces increase for upside-down
+      : rows - i - 1;          // Spaces decrease for normal
+
+    // Build the row
+    result += " ".repeat(numSpaces) + pattern.repeat(numChars) + "\n";
+  }
+
+  return result;
+}
+
+
+** end of script.js **
+

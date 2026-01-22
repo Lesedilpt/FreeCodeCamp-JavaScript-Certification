@@ -1,0 +1,23 @@
+** start of script.js **
+
+function largestOfAll(arr) {
+  const largestNumbers = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    let largest = arr[i][0]; // Start with the first number in the sub-array
+
+    for (let j = 1; j < arr[i].length; j++) {
+      if (arr[i][j] > largest) {
+        largest = arr[i][j];
+      }
+    }
+
+    largestNumbers.push(largest);
+  }
+
+  return largestNumbers;
+}
+
+
+** end of script.js **
+

@@ -1,0 +1,27 @@
+** start of script.js **
+
+function updateRecords(records, id, prop, value) {
+  // If value is an empty string, delete the property
+  if (value === "") {
+    delete records[id][prop];
+  } 
+  // If prop is "tracks"
+  else if (prop === "tracks") {
+    // If tracks property doesn't exist, create an empty array
+    if (!records[id].hasOwnProperty("tracks")) {
+      records[id]["tracks"] = [];
+    }
+    // Add the value to the tracks array
+    records[id]["tracks"].push(value);
+  } 
+  // For other properties that are not "tracks"
+  else {
+    records[id][prop] = value;
+  }
+
+  return records;
+}
+
+
+** end of script.js **
+

@@ -1,0 +1,14 @@
+** start of script.js **
+
+function dropElements(arr, func) {
+  // Keep removing elements from the start while func returns false
+  while (arr.length > 0 && !func(arr[0])) {
+    arr.shift(); // Remove the first element
+  }
+  
+  return arr; // Return the remaining array
+}
+
+
+** end of script.js **
+

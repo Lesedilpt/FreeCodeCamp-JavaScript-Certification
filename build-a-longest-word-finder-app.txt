@@ -1,0 +1,22 @@
+** start of script.js **
+
+function findLongestWordLength(str) {
+  // Split the sentence into words
+  const words = str.split(" ");
+  
+  // Initialize a variable to keep track of the longest length
+  let maxLength = 0;
+  
+  // Loop through each word and update maxLength if the word is longer
+  for (let word of words) {
+    if (word.length > maxLength) {
+      maxLength = word.length;
+    }
+  }
+  
+  return maxLength;
+}
+
+
+** end of script.js **
+

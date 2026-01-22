@@ -1,0 +1,16 @@
+** start of script.js **
+
+function getIndexToIns(arr, num) {
+  // 1. Sort the array in ascending order
+  const sortedArr = arr.slice().sort((a, b) => a - b);
+
+  // 2. Use findIndex to find the first element greater than or equal to num
+  const index = sortedArr.findIndex(el => el >= num);
+
+  // 3. If no element is greater or equal, return the length of the array
+  return index === -1 ? sortedArr.length : index;
+}
+
+
+** end of script.js **
+

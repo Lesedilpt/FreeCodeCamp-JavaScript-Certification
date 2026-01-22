@@ -1,0 +1,14 @@
+** start of script.js **
+
+function titleCase(str) {
+  // Split the string into words
+  return str
+    .toLowerCase() // Convert everything to lowercase first
+    .split(" ")    // Split into words
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1)) // Capitalize first letter
+    .join(" ");    // Join back into a string
+}
+
+
+** end of script.js **
+

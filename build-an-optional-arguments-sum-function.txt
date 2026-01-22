@@ -1,0 +1,25 @@
+** start of script.js **
+
+function addTogether() {
+  // Convert arguments to an array
+  const args = Array.from(arguments);
+
+  // If any argument is not a number, return undefined
+  if (args.some(arg => typeof arg !== "number")) return undefined;
+
+  // If two arguments, return their sum
+  if (args.length === 2) return args[0] + args[1];
+
+  // If only one argument, return a function expecting the second
+  if (args.length === 1) {
+    const first = args[0];
+    return function(second) {
+      if (typeof second !== "number") return undefined;
+      return first + second;
+    };
+  }
+}
+
+
+** end of script.js **
+

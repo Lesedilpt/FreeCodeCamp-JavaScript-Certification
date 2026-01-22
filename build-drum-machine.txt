@@ -1,0 +1,129 @@
+** start of index.html **
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Drum Machine</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="drum-machine">
+    <p id="display"></p>
+    <div id="pad-bank">
+      <div class="drum-pad" id="Heater-1">Q
+        <audio class="clip" src="https://cdn.freecodecamp.org/curriculum/drum/Heater-1.mp3" id="Q"></audio>
+      </div>
+      <div class="drum-pad" id="Heater-2">W
+        <audio class="clip" src="https://cdn.freecodecamp.org/curriculum/drum/Heater-2.mp3" id="W"></audio>
+      </div>
+      <div class="drum-pad" id="Heater-3">E
+        <audio class="clip" src="https://cdn.freecodecamp.org/curriculum/drum/Heater-3.mp3" id="E"></audio>
+      </div>
+      <div class="drum-pad" id="Heater-4">A
+        <audio class="clip" src="https://cdn.freecodecamp.org/curriculum/drum/Heater-4_1.mp3" id="A"></audio>
+      </div>
+      <div class="drum-pad" id="Clap">S
+        <audio class="clip" src="https://cdn.freecodecamp.org/curriculum/drum/Heater-6.mp3" id="S"></audio>
+      </div>
+      <div class="drum-pad" id="Open-HH">D
+        <audio class="clip" src="https://cdn.freecodecamp.org/curriculum/drum/Dsc_Oh.mp3" id="D"></audio>
+      </div>
+      <div class="drum-pad" id="Kick-n-Hat">Z
+        <audio class="clip" src="https://cdn.freecodecamp.org/curriculum/drum/Kick_n_Hat.mp3" id="Z"></audio>
+      </div>
+      <div class="drum-pad" id="Kick">X
+        <audio class="clip" src="https://cdn.freecodecamp.org/curriculum/drum/RP4_KICK_1.mp3" id="X"></audio>
+      </div>
+      <div class="drum-pad" id="Closed-HH">C
+        <audio class="clip" src="https://cdn.freecodecamp.org/curriculum/drum/Cev_H2.mp3" id="C"></audio>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+
+** end of index.html **
+
+** start of styles.css **
+
+#drum-machine {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: sans-serif;
+}
+
+#pad-bank {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.drum-pad {
+  width: 100px;
+  height: 100px;
+  background: #444;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  cursor: pointer;
+  user-select: none;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px #000;
+}
+
+.drum-pad:active {
+  background: #888;
+}
+
+#display {
+  margin-top: 20px;
+  font-size: 18px;
+  min-height: 24px;
+}
+
+
+** end of styles.css **
+
+** start of script.js **
+
+const display = document.getElementById('display');
+const pads = document.querySelectorAll('.drum-pad');
+
+// Play sound and update display
+function playSound(e) {
+  const audio = e.target.querySelector('audio') || document.getElementById(e.key.toUpperCase());
+  if (!audio) return;
+
+  audio.currentTime = 0;
+  audio.play();
+
+  const parent = audio.parentElement;
+  display.innerText = parent.id;
+}
+
+// Click event
+pads.forEach(pad => pad.addEventListener('click', playSound));
+
+// Keyboard event
+document.addEventListener('keydown', (e) => {
+  const key = e.key.toUpperCase();
+  const audio = document.getElementById(key);
+  if (!audio) return;
+
+  audio.currentTime = 0;
+  audio.play();
+  display.innerText = audio.parentElement.id;
+});
+
+
+** end of script.js **
+

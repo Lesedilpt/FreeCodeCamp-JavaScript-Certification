@@ -1,0 +1,10 @@
+** start of script.js **
+
+function bouncer(arr) {
+  // Use filter and Boolean to remove all falsy values
+  return arr.filter(Boolean);
+}
+
+
+** end of script.js **
+

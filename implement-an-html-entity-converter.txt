@@ -1,0 +1,20 @@
+** start of script.js **
+
+function convertHTML(str) {
+  // Mapping of special characters to HTML entities
+  const entities = {
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&apos;"
+  };
+
+  // Replace each special character using a regular expression
+  return str.replace(/[&<>"']/g, match => entities[match]);
+}
+
+
+
+** end of script.js **
+

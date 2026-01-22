@@ -1,0 +1,22 @@
+** start of script.js **
+
+function sumFibs(num) {
+  let a = 0;       // First Fibonacci number
+  let b = 1;       // Second Fibonacci number
+  let sum = 0;     // Sum of odd Fibonacci numbers
+
+  while (b <= num) {
+    if (b % 2 !== 0) {
+      sum += b;    // Add if odd
+    }
+    let next = a + b; // Next Fibonacci number
+    a = b;
+    b = next;
+  }
+
+  return sum;
+}
+
+
+** end of script.js **
+
